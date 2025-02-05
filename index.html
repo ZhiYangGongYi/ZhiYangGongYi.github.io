@@ -11,6 +11,7 @@
             padding: 0;
             background-color: #f5f5f5;
             color: #333;
+            position: relative;
         }
         .container {
             max-width: 1200px;
@@ -60,21 +61,6 @@
             background: #2c3e50;
             color: #fff;
         }
-        .button {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .button:hover {
-            background-color: #2980b9;
-        }
         .header {
             background-image: url('https://cn.liquidbounce.net/img/screenshots/main-menu.png');
             background-size: cover;
@@ -85,9 +71,48 @@
             padding: 10px 0;
             text-align: center;
         }
+        .button {
+            display: inline-block;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(to right, #007bff, #87CEEB);
+            animation: gradient 3s infinite;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
+    <canvas id="geometryCanvas" width="800" height="600"></canvas>
     <div class="header">
         <h1>审判公益 • 基于 Fabric 的 Minecraft 免费实用客户端</h1>
     </div>
@@ -146,5 +171,90 @@
     <div class="footer">
         <p>© 2025 审判公益</p>
     </div>
+    <script>
+        const canvas = document.getElementById('geometryCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const points = [];
+        const lines = [];
+
+        function init() {
+            for (let i = 0; i < 15; i++) {
+                points.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    dx: (Math.random() - 0.5) * 2,
+                    dy: (Math.random() - 0.5) * 2
+                });
+            }
+
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    lines.push({
+                        from: points[i],
+                        to: points[j],
+                        opacity: Math.random(),
+                        direction: Math.random() < 0.5 ? 1 : -1,
+                        speed: (Math.random() + 0.5) * 0.01
+                    });
+                }
+            }
+        }
+
+        function update() {
+            for (let i = 0; i < points.length; i++) {
+                points[i].x += points[i].dx;
+                points[i].y += points[i].dy;
+
+                if (points[i].x + points[i].dx > canvas.width || points[i].x + points[i].dx < 0) {
+                    points[i].dx = -points[i].dx;
+                }
+                if (points[i].y + points[i].dy > canvas.height || points[i].y + points[i].dy < 0) {
+                    points[i].dy = -points[i].dy;
+                }
+            }
+
+            for (let i = 0; i < lines.length; i++) {
+                lines[i].opacity += lines[i].speed * lines[i].direction;
+                if (lines[i].opacity >= 1 || lines[i].opacity <= 0) {
+                    lines[i].direction = -lines[i].direction;
+                    lines[i].speed = (Math.random() + 0.5) * 0.01;
+                }
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < points.length; i++) {
+                ctx.beginPath();
+                ctx.arc(points[i].x, points[i].y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = 'grey';
+                ctx.fill();
+            }
+
+            for (let i = 0; i < lines.length; i++) {
+                ctx.beginPath();
+                ctx.moveTo(lines[i].from.x, lines[i].from.y);
+                ctx.lineTo(lines[i].to.x, lines[i].to.y);
+                ctx.strokeStyle = `rgba(80, 80, 80, ${lines[i].opacity})`;
+                ctx.stroke();
+            }
+        }
+
+        function animate() {
+            update();
+            draw();
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
