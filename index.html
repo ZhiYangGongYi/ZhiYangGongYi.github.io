@@ -112,6 +112,10 @@
     </style>
 </head>
 <body>
+    <audio id="myAudio" loop>
+        <source src="http://music.163.com/song/media/outer/url?id=2166510606" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
     <canvas id="geometryCanvas" width="800" height="600"></canvas>
     <div class="header">
         <h1>审判公益 • 基于 Fabric 的 Minecraft 免费实用客户端</h1>
@@ -259,6 +263,12 @@
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+        });
+        document.addEventListener('click', function() {
+            var audio = document.getElementById('myAudio');
+            audio.play().catch(function(error) {
+                console.error('音频播放失败：', error);
+            });
         });
     </script>
 </body>
