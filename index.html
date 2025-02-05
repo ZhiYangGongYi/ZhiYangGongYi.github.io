@@ -179,12 +179,17 @@
         const lines = [];
 
         function init() {
-            for (let i = 0; i < 15; i++) {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            points.length = 0;
+            lines.length = 0;
+
+            for (let i = 0; i < 10; i++) {
                 points.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    dx: (Math.random() - 0.5) * 2,
-                    dy: (Math.random() - 0.5) * 2
+                    dx: (Math.random() - 0.5) * 3,
+                    dy: (Math.random() - 0.5) * 3
                 });
             }
 
@@ -229,7 +234,7 @@
             for (let i = 0; i < points.length; i++) {
                 ctx.beginPath();
                 ctx.arc(points[i].x, points[i].y, 2, 0, Math.PI * 2);
-                ctx.fillStyle = 'grey';
+                ctx.fillStyle = 'silver';
                 ctx.fill();
             }
 
@@ -237,7 +242,7 @@
                 ctx.beginPath();
                 ctx.moveTo(lines[i].from.x, lines[i].from.y);
                 ctx.lineTo(lines[i].to.x, lines[i].to.y);
-                ctx.strokeStyle = `rgba(80, 80, 80, ${lines[i].opacity})`;
+                ctx.strokeStyle = `rgba(192, 192, 192, ${lines[i].opacity})`;
                 ctx.stroke();
             }
         }
