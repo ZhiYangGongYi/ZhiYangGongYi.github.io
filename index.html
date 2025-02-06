@@ -125,6 +125,113 @@
     </style>
 </head>
 <body>
+    <div class="notify">
+        <h3>注意</h3>
+        <p>liquidbounce.net网站抄袭了我们的网站且可能泄露隐私，下载内容可能存在病毒风险。为保护隐私安全，请勿访问该网站！</p>
+        <button onclick="closeNotify()">关闭</button>
+    </div>
+    <script>
+        function closeNotify() {
+            const notify = document.querySelector('.notify');
+            notify.classList.add('hide');
+            setTimeout(() => {
+                notify.style.display = 'none';
+            }, 500);
+        }
+    </script>
+    <style>
+        .notify {
+            background: linear-gradient(135deg, #e0f7ff, #ffffff80);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            animation: fadeIn 0.5s ease-out, float 20s ease-in-out infinite;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .notify h3 {
+            margin: 0 0 10px;
+            color: #006994;
+            font-size: 1.2em;
+        }
+        .notify p {
+            margin: 0 0 20px;
+            color: #333;
+            font-size: 0.9em;
+        }
+        .notify button {
+            background: linear-gradient(135deg, #ffffff, #e0f7ff);
+            color: gray;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 0.9em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .notify button:hover {
+            background: linear-gradient(135deg, #ffffff, #ffffff);
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .notify button:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -70%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+        @keyframes float {
+    0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            10% {
+                transform: translate(-50%, -60%) scale(1.02);
+            }
+            20% {
+                transform: translate(-50%, -40%) scale(0.98);
+            }
+            30% {
+                transform: translate(-50%, -60%) scale(1.02);
+            }
+            40% {
+                transform: translate(-50%, -40%) scale(0.98);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.02);
+    }
+            60% {
+                transform: translate(-50%, -50%) scale(0.98);
+    }
+            70% {
+                transform: translate(-50%, -60%) scale(1.02);
+            }
+            80% {
+                transform: translate(-50%, -40%) scale(0.98);
+            }
+            90% {
+                transform: translate(-50%, -60%) scale(1.02);
+            }
+        }
+        .notify.hide {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    </style>
     <audio id="myAudio" loop>
         <source src="http://music.163.com/song/media/outer/url?id=2166510606" type="audio/mpeg">
         您的浏览器不支持音频播放。
