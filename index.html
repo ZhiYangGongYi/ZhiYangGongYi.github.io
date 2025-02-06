@@ -136,6 +136,99 @@
     </div>
     <div class="container">
         <div class="section">
+            <h2>在线演示</h2>
+                <div style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                <iframe srcdoc="<!DOCTYPE html>
+                <html lang='en'>
+                <head>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <title>Combat</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 0;
+                            padding: 0;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100vh;
+                            background-color: #f0f0f0;
+                        }
+                        .draggable-menu {
+                            width: 200px;
+                            height: 300px;
+                            background-color: rgba(0, 0, 0, 0.7);
+                            border: 1px solid rgba(255, 255, 255, 0.5);
+                            border-radius: 8px;
+                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                            overflow: hidden;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            backdrop-filter: blur(10px);
+                            color: white;
+                        }
+                        .menu-header {
+                            background-color: rgba(0, 0, 0, 0.8);
+                            padding: 10px;
+                            text-align: center;
+                            font-size: 16px;
+                            border-radius: 8px 8px 0 0;
+                            border-bottom: 2px solid #007BFF;
+                        }
+                        .menu-content {
+                            padding: 0px;
+                            overflow-y: auto;
+                            max-height: 250px;
+                        }
+                        .menu-content ul {
+                            list-style-type: none;
+                            padding: 0;
+                        }
+                        .menu-content ul li {
+                            padding: 8px;
+                            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                            cursor: pointer;
+                        }
+                        .menu-content ul li:hover {
+                            background-color: rgba(255, 255, 255, 0.1);
+                        }
+                    </style>
+                </head>
+                <body>
+                <div class='draggable-menu'>
+                    <div class='menu-header'>Combat</div>
+                    <div class='menu-content'>
+                        <ul>
+                            <li>AimBot</li>
+                            <li>AutoArmor</li>
+                            <li>AutoBow</li>
+                            <li>AutoClicker</li>
+                            <li>AutoLeave</li>
+                            <li>AutoPot</li>
+                            <li>AutoSoup</li>
+                            <li>AutoSword</li>
+                            <li>AutoTotem</li>
+                            <li>BowAimBot</li>
+                            <li>Criticals</li>
+                            <li>FastBow</li>
+                            <li>HitBox</li>
+                            <li>Ignite</li>
+                            <li>KillAura</li>
+                            <li>NoFriends</li>
+                            <li>Trigger</li>
+                            <li>Velocity</li>
+                        </ul>
+                    </div>
+                </div>
+                </body>
+                </html>" style="width: 100%; height: 400px; border: none;">
+                </iframe>
+            </div>
+        </div>
+        <div class="section">
             <h2>脚本 API</h2>
             <p>你觉得客户端缺少某个模块或命令？审判公益 的 JavaScript API 可以让你自行完成！只需几行代码，你就可以开发自己的模块并与社区分享。</p>
         </div>
