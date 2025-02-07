@@ -304,6 +304,7 @@
                             padding: 8px;
                             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
                             cursor: pointer;
+                            transition: background-color 0.3s ease, color 0.3s ease;
                         }
                         .menu-content ul li:hover {
                             background-color: rgba(255, 255, 255, 0.1);
@@ -336,6 +337,29 @@
                         </ul>
                     </div>
                 </div>
+                <script>
+                    const featureStates = {};
+
+                    const menuItems = document.querySelectorAll('.menu-content ul li');
+
+                    menuItems.forEach(item => {
+                        item.addEventListener('click', () => toggleFeature(item));
+                    });
+                    function toggleFeature(item) {
+                        const featureName = item.textContent;
+                        if (featureStates[featureName] === undefined) {
+                            featureStates[featureName] = false;
+                        }
+
+                        featureStates[featureName] = !featureStates[featureName];
+
+                        if (featureStates[featureName]) {
+                            item.style.color = '#007BFF';
+                        } else {
+                            item.style.color = 'white';
+                        }
+                    }
+                </script>
                 </body>
                 </html>" style="width: 100%; height: 400px; border: none;">
                 </iframe>
